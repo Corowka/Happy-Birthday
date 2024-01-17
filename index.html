@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/img/favicon.png" />
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/confetti.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎊Happy Birthday Nikita🎉</title>
+  <script src="./messages.js"></script>
+</head>
+
+<body>
+
+  <canvas width="1920" height="1080" id="confetti-canvas"
+    style="display:block;z-index:999999;pointer-events:none"></canvas>
+
+  <button id="toggle">Вкл</button>
+
+  <script>
+    const toggleButton = document.getElementById("toggle");
+    toggleButton.addEventListener("click", () => {
+      toggleConfetti();
+      toggleButton.innerText = isRunning() ? "Выкл" : "Вкл";
+    });
+  </script>
+
+  <section class="introdaction">
+    <div class="wrapper">
+      <img src="./img/Nilita.jpg" alt="">
+      <div class="text_container">
+        <h1 class="title">С днем рожденья,<br> Дорогой Никита</h1>
+        <div class="line"></div>
+        <div class="line_vertical"></div>
+        <p class="text">
+          Долго думали, как сделать этот день для тебя особенным. И, наконец, мы решили сделать то, в чём мы хороши.
+          Этот сайт – наше творение, наполненное любовью и вниманием твоих близких и друзей.
+          Мы хотели вспомнить вместе важные моменты из твоей жизни и подарить тебе нечто простое, но очень важное –
+          эмоции. В этом проекте участвовали не только мы, Женя, Максон и Сабина,
+          но и множество людей, которые захотели внести свой вклад и написали тебе теплые слова, их имена ты найдёшь
+          ниже. Все они прямо сейчас с тобой в этот замечательный день, чтобы он запомнился тебе надолго.
+        </p>
+        <button id="congratulation">Праздновать, юху 🎊🎉</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const congratulationButton = document.getElementById("congratulation");
+    congratulationButton.addEventListener("click", () => {
+      startConfetti();
+      document.getElementById("toggle").innerText = isRunning() ? "Выкл" : "On";
+      window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+    });
+  </script>
+
+
+  <section class="tree">
+    <div class="title">
+      <div class="wrapper">Яркие моменты</div>
+    </div>
+    <div class="content">
+      <img class="tree_image" src="./img/tree.png">
+      <div class="tree_container">
+        <div class="item">
+          <div class="text">
+            <h2>СТУДЕНЧЕСКАЯ ЖИЗНЬ</h2>
+            <div></div>
+            <p>
+              Решившись начать то, где изначально, мог быть не так уверен ты попал в удивительный мир творчества,
+              взросление новых знакомств, работы над собой, различных испытаний. И это то, что ты никогда не забудешь,
+              ведь этот этап в жизни, не может не быть ключевым.
+            </p>
+          </div>
+        </div>
+        <div class="item left">
+          <div class="text">
+            <h2>ШКОЛЬНЫЕ ГОДЫ</h2>
+            <div></div>
+            <p>
+              Место где-то ты рос, делал ошибки, узнавал свои интересы, встречал судьбаносных людей.
+              Место где можно было быть сорванцом, место где главной заботой была несделанная домашняя работа.
+              Были свои счастливые и грустные моменты, которые сделали тебя тем, кто ты есть сейчас.
+            </p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="text">
+            <h2>БЕЗЗАБОТНЫЕ ГОДЫ</h2>
+            <div></div>
+            <p>
+              Тогда ты был юн, как всегда очарователен и возможно не так послушен как хотелось бы маме.
+              Хитрый озарник, выжный гусь – всё это про тебя. Маленький Никита, что получал любовь родителей
+              и учился любить других, чтобы сейчас быть одним из самых чудесных людей.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="images_container">
+        <div class="image image_1"></div>
+        <div class="image image_2"></div>
+        <div class="image image_3"></div>
+        <div class="image image_4"></div>
+        <div class="image image_5"></div>
+        <div class="image image_6"></div>
+        <div class="image image_7"></div>
+        <div class="image image_8"></div>
+        <div class="image image_9"></div>
+        <div class="image image_10"></div>
+        <div class="image image_11"></div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="messages">
+    <div class="title">
+      <div class="wrapper">Ребята, что собрались здесь, чтобы тебя поздравить</div>
+    </div>
+    <div class="messages_container">
+    </div>
+  </section>
+
+  <script>
+    const emoticons = ["🐶", "🐱", "🤣", "🤓", "🥳", "🤑", "👶", "🐧", "🦝", "🙉", "😊", "👽", "👨‍🎨", "🧸", "💻", "📚", "🤼‍♂️", "⚽️", "🍺", "🍳", "🌺", "🔥", "🌊", "🦀", "🐥", "💃", "🤪", "😇", "😂", "😜", "😎", "🐥", "🦖", "🐮", "💫", "🦚", "🐼"];
+
+    function createMessageHTML(message) {
+      const container = document.createElement('div');
+      container.className = 'message';
+      const iconContainer = document.createElement('div');
+      iconContainer.className = 'icon_part';
+      const icon = document.createElement('div');
+      icon.className = 'icon';
+      icon.innerHTML = emoticons[Math.round(Math.random() * (emoticons.length - 1))]
+      console.log(icon.innerHTML)
+      iconContainer.appendChild(icon);
+      const textContainer = document.createElement('div');
+      textContainer.className = 'text';
+      const textParagraph = document.createElement('p');
+      textParagraph.textContent = message.message;
+      textContainer.appendChild(textParagraph);
+      const nameContainer = document.createElement('div');
+      nameContainer.className = 'name';
+      const nameParagraph = document.createElement('p');
+      nameParagraph.textContent = message.name;
+      nameContainer.appendChild(nameParagraph);
+      container.appendChild(iconContainer);
+      container.appendChild(textContainer);
+      container.appendChild(nameContainer);
+      return container;
+    }
+
+    function appendMessagesToContainer(messages) {
+      const container = document.querySelector('.messages_container');
+      messages.forEach((message) => {
+        const messageHTML = createMessageHTML(message);
+        container.appendChild(messageHTML);
+      });
+    }
+
+    appendMessagesToContainer(messages);
+  </script>
+
+  <section class="stats">
+    <div class="title">
+      <div class="wrapper">Важные факты о поздравлениях</div>
+    </div>
+    <div class="wrapper">
+      <div class="container">
+        <div class="card">
+          <p>Cреднее количество слов</p>
+          <div id="words" class="res"></div>
+        </div>
+        <div class="card">
+          <p>Cреднее количество символов</p>
+          <div id="symbols" class="res"></div>
+        </div>
+        <div class="card">
+          <p>Самое популярное слово</p>
+          <div id="word" class="res"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const wordsItem = document.getElementById("words");
+    const symbolsItem = document.getElementById("symbols");
+    const wordItem = document.getElementById("word");
+    const averageWords = Math.round(messages.reduce((total, item) => total + item.message.split(" ").length, 0) / messages.length);
+    wordsItem.innerHTML = averageWords;
+    const averageSymbols = Math.round(messages.reduce((total, item) => total + item.message.length, 0) / messages.length);
+    symbolsItem.innerHTML = averageSymbols;
+    const wordFrequencyMap = new Map();
+    for (let item of messages) {
+      const words = item.message.split(" ");
+      for (let word of words) {
+        if (word.length < 6) {
+          continue
+        }
+        const trimmedWord = word.trim();
+        if (wordFrequencyMap.has(trimmedWord)) {
+          wordFrequencyMap.set(trimmedWord, wordFrequencyMap.get(trimmedWord) + 1);
+        } else {
+          wordFrequencyMap.set(trimmedWord, 1);
+        }
+      }
+    }
+    let mostFrequentWord = "";
+    let maxFrequency = 0;
+    for (let [word, frequency] of wordFrequencyMap) {
+      if (frequency > maxFrequency) {
+        mostFrequentWord = word;
+        maxFrequency = frequency;
+      }
+    }
+    wordItem.innerHTML = mostFrequentWord;
+  </script>
+
+</body>
+
+</html>
