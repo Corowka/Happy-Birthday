@@ -187,11 +187,11 @@ canvas {
 }
 
 .tree .item {
+  height: 240px;
   display: flex;
   padding: 60px;
   align-items: center;
   justify-content: right;
-  height: 500px;
 }
 
 .tree .left {
@@ -204,7 +204,7 @@ canvas {
   border-radius: 16px;
   border: 5px solid #14141c;
   z-index: 99;
-  width: 25vw;
+  width: 30vw;
   transition-duration: .2s;
   transition-timing-function: ease-in-out;
 }
@@ -251,15 +251,17 @@ canvas {
 .tree .image {}
 
 .tree .image_1 {
-  background: url("../img/tree/msg1854385734-164777.jpg");
-  background-position: 42% 40%;
+  background: url("../img/tree/Untitled.jpg");
+  background-size: cover;
+  background-position: 55%;
   grid-row: 1 / 9;
   grid-column: 1 / 6;
 }
 
 .tree .image_2 {
-  background: url("../img/tree/msg1854385734-164648.jpg");
+  background: url("../img/tree/Untitled1.jpg");
   background-size: cover;
+  background-position: 75%;
   grid-row: 1 / 5;
   grid-column: 6 / 13;
 }
